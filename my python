@@ -53,12 +53,7 @@ class GeminiBot:
         self.history.append((prompt, result))
         return result
 
-    def show_history(self):
-        print("\n--- HISTORY ---")
-        for i, item in enumerate(self.history, 1):
-            print(i, ":", item[0], "->", item[1])
-
-
+    
 # =========================
 # Test Cases
 # =========================
@@ -79,5 +74,3 @@ if __name__ == "__main__":
     print("=== TEST CASES ===")
     for case in test_cases:
         print(bot.generate(case))
-
-    bot.show_history()
