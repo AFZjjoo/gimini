@@ -71,6 +71,6 @@ if __name__ == "__main__":
         "abstract art"
     ]
 
-    print("test_case")
+    print(test_cases)
     for case in test_cases:
         print(bot.generate(case))
