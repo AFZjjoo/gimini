@@ -1,0 +1,83 @@
+class ImageStrategy:
+    def generate(self, prompt):
+        return "Generating default image..."
+
+
+class ForestStrategy(ImageStrategy):
+    def generate(self, prompt):
+        return "Generating a beautiful forest image with trees and mist..."
+
+
+class CarStrategy(ImageStrategy):
+    def generate(self, prompt):
+        return "Generating a red sports car in a neon city..."
+
+
+class CityStrategy(ImageStrategy):
+    def generate(self, prompt):
+        return "Generating a futuristic city at night with lights..."
+
+
+class DefaultStrategy(ImageStrategy):
+    def generate(self, prompt):
+        return "Generating image based on prompt: " + prompt
+
+
+# =========================
+# Context Class 
+# =========================
+
+
+
+class GeminiBot:
+    def __init__(self, name):
+        self.name = name
+        self.history = []
+
+    def choose_strategy(self, prompt):
+        prompt = prompt.lower()
+
+        if "forest" in prompt:
+            return ForestStrategy()
+        elif "car" in prompt:
+            return CarStrategy()
+        elif "city" in prompt:
+            return CityStrategy()
+        else:
+            return DefaultStrategy()
+
+    def generate(self, prompt):
+        strategy = self.choose_strategy(prompt)
+        result = strategy.generate(prompt)
+
+        self.history.append((prompt, result))
+        return result
+
+    def show_history(self):
+        print("\n--- HISTORY ---")
+        for i, item in enumerate(self.history, 1):
+            print(i, ":", item[0], "->", item[1])
+
+
+# =========================
+# Test Cases
+# =========================
+
+
+
+if __name__ == "__main__":
+    bot = GeminiBot("Gemini")
+
+    test_cases = [
+        "forest in morning",
+        "red car on road",
+        "city at night",
+        "mountain view",
+        "abstract art"
+    ]
+
+    print("=== TEST CASES ===")
+    for case in test_cases:
+        print(bot.generate(case))
+
+    bot.show_history()
