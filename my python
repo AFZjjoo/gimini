@@ -71,6 +71,6 @@ if __name__ == "__main__":
         "abstract art"
     ]
 
-    print("=== TEST CASES ===")
+    print("test_case")
     for case in test_cases:
         print(bot.generate(case))
